@@ -30,7 +30,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import $ from 'jquery'
 export default {
@@ -85,6 +84,8 @@ export default {
   }
   .loginBox{
     padding-top: 50px;
+    margin-left: 0;
+    margin-right: 0;
   }
   .loginBox>div{
     padding: 15px 30px;
@@ -95,7 +96,7 @@ export default {
     overflow: hidden;
     justify-content: space-around;
     height: 90px;
-    padding: 8px 30px;
+    padding: 8px 0;
   }
   .si, .su{
     align-self: flex-start;
@@ -129,7 +130,7 @@ export default {
   }
   .captcha-input{
     display: inline;
-    width: 200px;
+    max-width: 160px;
     float: left;
     box-shadow: 0 0 -30px #f00;
   }

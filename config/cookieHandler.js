@@ -1,5 +1,5 @@
-function getCooikeItem (key) {
-  var arr = document.cookie.split(';')
+function getCookieItem (key) {
+  var arr = document.cookie.split('; ')
   var t = null
   arr.forEach(function (v) {
     var k = v.split('=')[0]
@@ -12,12 +12,12 @@ function getCooikeItem (key) {
 }
 
 function setCookieItem (key, value) {
-  var str = ['; ', key, '=', value].join('')
-  return document.cookie += str
+  var str = [key, '=', value].join('')
+  document.cookie = str
 }
 
 var cookieHandler = {
-  getCooikeItem: getCooikeItem,
+  getCookieItem: getCookieItem,
   setCookieItem: setCookieItem
 }
 

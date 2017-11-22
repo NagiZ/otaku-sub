@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
-import Index from '@/components/Index'
+// import Index from '@/components/Index'
+import IndexPanel from '@/components/IndexPanel'
 import Room from '@/components/Room'
-import HostSetting from '@/components/HostSetting'
+import Setting from '@/components/Setting'
+// import Test from '@/components/test'
 
 Vue.use(Router)
 
@@ -16,18 +18,20 @@ export default new Router({
     },
     {
       path: '/index',
-      name: 'Index',
-      component: Index
-    },
-    {
-      path: '/chat/room',
-      component: Room,
-      name: 'Room'
-    },
-    {
-      path: '/users/hostsetting',
-      component: HostSetting,
-      name: 'HostSetting'
+      name: 'IndexPanel',
+      component: IndexPanel,
+      children: [
+        {
+          path: '/index/room/:id',
+          component: Room,
+          name: 'Room'
+        },
+        {
+          path: '/index/host/setting',
+          component: Setting,
+          name: 'Setting'
+        }
+      ]
     }
   ]
 })

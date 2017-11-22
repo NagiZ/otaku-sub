@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index container panel">
     <nav class="navbar navbar-default no-margin no-border" id="navigation">
       <div class="container-fluid">
         <div class="navbar-header no-margin fl">
@@ -10,19 +10,24 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand font-cf" href="http://www.baidu.com">Otaku Chat~</a>
-          <div class="avator visible-xs">
-            <div>info: chatroom</div>
+          <div class="avatar" id="avatar" @click="getHostInfo">
+            <img :src="getUserInfo.avatar" :title="getUserInfo.name">
           </div>
         </div>
         <div class="navbar-header collapse navbar-collapse no-margin" id="nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><router-link to="/chat/room">Action1</router-link></li>
-            <li id="newId"><input type="text" v-model="newId" @click="addFriend"><span class="glyphicon glyphicon-plus"></span></li>
-            <li><router-link to="/">Action3</router-link></li>
+            <li id="newId">
+              <!-- <input type="text" v-model="newId"><span class="glyphicon glyphicon-plus" @click="addFriend"></span> -->
+              <form class="navbar-form navbar-left">
+                <div class="form-group id">
+                  <input type="text" v-model="newId" class="form-control" placeholder="Enter an ID ">
+                </div>
+                <button type="submit" class="btn btn-info" @click="addFriend">
+                  <span>添加</span>
+                </button>
+              </form>
+            </li>
           </ul>
-        </div>
-        <div class="avator" id="avator" @click="getHostInfo">
-          <img :src="getUserInfo.avator" :alt="getUserInfo.name">
         </div>
       </div>
     </nav>
@@ -48,6 +53,8 @@
         <li class="list-group-item channel_list_item" title="Semi-public Channels">GROUPS</li>
       </ul>
     </div>
+    <router-link to="/index/chat/room">to test</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -67,7 +74,8 @@ export default {
       console.log(e.which)
       switch (e.which) {
         case 1 :
-          this.$store.dispatch('getInChannel', {obj: this, id: id})
+          // this.$store.dispatch('getInChannel', {obj: this, id: id})
+          this.$router.push('chat/room')
           break
         case 2 :
           this.$store.dispatch('getFriendInfo', id)
@@ -106,7 +114,12 @@ export default {
 </script>
 
 <style scoped>
-  .avator{
+  .index{
+    height: 100%;
+    padding: 5px;
+    background-color: #af0;
+  }
+  .avatar{
     width:50px; height: 50px; background-color: #f00; float: right; margin-right: 20px; cursor: pointer;
   }
   .no-margin{
@@ -153,16 +166,25 @@ export default {
   #public, #private{
     display: none;
   }
+  #newId{
+    overflow: hidden;
+    display: flex;
+    flex-direction: 
+  }
+  #newId .id{
+    float: left;
+  }
   #newId input{
     border: none;
+    display: inline-block;
     border-radius: 5px;
     padding: 5px 20px;
   }
-  #newId span{
+  #newId button{
     display: inline-block;
-    margin-left: -20px;
-    padding: 5px;
-    border-right: 5px;
+  }
+  #newId button:focus{
+    outline: none;
   }
   /*#public-box:hover #public{
     display: block;

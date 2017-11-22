@@ -9,17 +9,18 @@ function addMessage (list, toAdd, boxEle, scrollEle) {
 }
 
 //finger out height of all message items box
-function getHeight (ele) {
+function getHeight (ele, scrollEle) {
   var heightArray = [].map.call(ele, function (v, i) {
-    return v.offsetHeight
+    return v.offsetHeight + 20
   })
   var totalHeight = heightArray.reduce(function (prev, curv, i) {
     return prev + curv
   }, 0)
-  return totalHeight
+  var h = totalHeight > scrollEle.height() ? totalHeight : scrollEle.height()
+  return h
 }
 
 var roomActions = {
-  addMessage: addMessage
+  getHeight: getHeight
 }
 export default roomActions
